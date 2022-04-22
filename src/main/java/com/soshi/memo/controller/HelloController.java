@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
     private final SoshiDao soshiDao;
-    
+
 	public HelloController(SoshiDao soshiDao) {
 		this.soshiDao = soshiDao;
 	}
@@ -29,9 +29,17 @@ public class HelloController {
 
     @RequestMapping("/soshi")
     public String soshi(Model model) {
-		
+
 		SoshiDto testData = soshiDao.selectAll();
         model.addAttribute("soshi", testData.getTestName());
         return "soshi";
+    }
+
+    @RequestMapping("/main")
+    public String main(Model model) {
+
+		SoshiDto testData = soshiDao.selectAll();
+        model.addAttribute("main", testData.getTestName());
+        return "main";
     }
 }
